@@ -13,7 +13,7 @@
 ##############################################################################
 import os
 
-from zope.interface import implements
+from zope.interface import implementer
 
 from pyramid.interfaces import IAuthenticationPolicy
 from pyramid.security import Authenticated
@@ -24,8 +24,8 @@ from repoze.who.config import make_api_factory_with_config
 def _null_callback(identity, request):
     return ()
 
+@implementer(IAuthenticationPolicy)
 class WhoV2AuthenticationPolicy(object):
-    implements(IAuthenticationPolicy)
 
     def __init__(self, config_file, identifier_id, callback=_null_callback):
         config_file = self._config_file = os.path.abspath(
