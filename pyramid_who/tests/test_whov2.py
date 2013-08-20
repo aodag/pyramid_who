@@ -184,7 +184,7 @@ class WhoV2AuthenticationPolicyTests(unittest.TestCase):
         policy = self._makeOne()
         self.assertEqual(policy.remember(request, 'phred'), HEADERS)
         self.assertEqual(api._remembered['repoze.who.userid'], 'phred')
-        self.failUnless(api._remembered['identifier'] is identifier)
+        self.assertTrue(api._remembered['identifier'] is identifier)
 
     def test_forget_w_api_in_environ(self):
         HEADERS = [('Fruit', 'Basket')]

@@ -11,10 +11,10 @@ class ForbiddenChallengeDeciderTests(unittest.TestCase):
 
     def test_conforms_to_IChallengeDecider(self):
         from repoze.who.interfaces import IChallengeDecider
-        self.failUnless(IChallengeDecider.providedBy(self._getFUT()))
+        self.assertTrue(IChallengeDecider.providedBy(self._getFUT()))
 
     def test_miss(self):
-        self.failIf(self._callFUT({}, '200 OK', ()))
+        self.assertFalse(self._callFUT({}, '200 OK', ()))
 
     def test_hit(self):
-        self.failUnless(self._callFUT({}, '403 Forbidden', ()))
+        self.assertTrue(self._callFUT({}, '403 Forbidden', ()))
